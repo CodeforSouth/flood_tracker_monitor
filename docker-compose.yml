@@ -1,0 +1,23 @@
+version: '3'
+volumes:
+  local_postgres_data: {}
+  local_postgres_data_backups: {}
+services:
+  db:
+    image: postgres
+    volumes:
+      - local_postgres_data:/var/lib/postgresql/data
+      - local_postgres_data_backups:/backups    
+    ports:
+      - "5432:5432"
+  web:
+    build: .
+    command: flask run --host=0.0.0.0
+    env_file:
+      - ./env/web-var.env
+    volumes:
+      - ./app/:/app
+    ports:
+      - "8000:5000"
+    depends_on:
+      - db

@@ -1,0 +1,8 @@
+## before begining please create a folder with the name 'env' in the root directory of the repo
+## add a web-var.env file with values for the following:
+FLASK_APP=iot
+FLASK_ENV=development
+DATABASE_URL=postgresql://postgres@db/ft
+SECRET_KEY=secret_key
+TWILIO_ACCOUNT_ID=secret_key
+TWILIO_SECRET_KEY=secret_key

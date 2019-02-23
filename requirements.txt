@@ -1,5 +1,5 @@
 Flask
-psycopg2>=2.6.1
+psycopg2-binary>=2.6.1
 Flask-SQLAlchemy>=2.1
 flask-migrate
 flask-wtf

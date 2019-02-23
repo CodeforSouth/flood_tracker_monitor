@@ -1,10 +1,11 @@
 from flask_wtf import FlaskForm
 from wtforms import StringField, BooleanField, SubmitField, IntegerField, RadioField
-from wtforms.validators import DataRequired
+from wtforms.fields.html5 import TelField
+from wtforms.validators import DataRequired, Length
 
 class SubscribeForm(FlaskForm):
-    phone_number = IntegerField('Phone Number', validators=[DataRequired()])
-    zip_code = IntegerField('Zip Code', validators=[])
-    device = RadioField(u'Device Subscription', choices=[('1', '1'), ('2', '2'), ('3', '3')], validators=[DataRequired()])
-    contact_method = RadioField(u'Contact Method', choices=[('1', 'SMS'), ('2', 'Phone Call'), ('3', 'Both')], validators=[DataRequired()])
+    phone_number = TelField('Phone Number', validators=[DataRequired()])
+    zip_code = IntegerField('Zip Code')
+    device = RadioField(u'Device Subscription', validators=[DataRequired()], choices=[('1', 'Spring Park'), ('2', 'City Hall'), ('3', 'Surfside Park')])
+    contact_method = RadioField(u'Contact Method', validators=[DataRequired()], choices=[('sms', 'SMS'), ('phone', 'Phone Call'), ('both', 'Both')])
     submit = SubmitField('Submit')

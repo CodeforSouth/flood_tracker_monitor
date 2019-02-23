@@ -1,40 +1,56 @@
 {% extends 'base.html' %}
 
 {% block header %}
-  <h1>{% block title %}Home Page{% endblock %}</h1>
+  <span>{% block title %}Home{% endblock %}</span>
 {% endblock %}
 
 {% block content %}
 <div class="container">
-  <div class="section">
-    <form action="/subscribe" method="post">
-        {{ form.hidden_tag() }}
-    <h2>Lets find the closest Flood Tracker to you:</h2>
-    {{form.zip_code.label}} {{form.zip_code(size=12)}}
-  </div>
     <div class="section">
-      <h2>Pick from the list below</h2>
-      <div id="map"></div>
-      {{form.device.label}}{{form.device(size=30)}}
-
+        <h2>Flood Trackers Currently Online</h2>
+        <div id="map"></div>
     </div>
-    <div class="section">
-        <h2>Enter your phone number below (US numbers only please)</h2>
-        {{form.phone_number.label}} {{form.phone_number(size=30)}}
+  <div class="section form">
+      <span class="column1">The Code For Miami Flood Tracking project has monitoring devices listed below. You can elect to get notified by a phone call, sms message, or both when our trackers detect a flood.</span>
+    <form action="/subscribe" method="post" class="column2">
+      <span class="form-title">Subscribe to Flood Alerts Near You</span>
+      <div class="form-group">
+        {{form.phone_number.label}}<br>
+        {{form.phone_number(pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}")}}
       </div>
-      <div class="section">
-          <h2>Select how you'd like to be reached</h2>
-          {{form.contact_method.label}} {{form.contact_method(size=30)}}
-       </div>
-       <div class="section">
-        {{form.submit()}}
-            </form>
-       </div>
+      <div class="form-group">
+          {{form.device.label}}<br>
+          {% for subfield in form.device %}
+          <tr>
+              <td>{{ subfield(required='required') }}</td>
+              <td>{{ subfield.label }}</td>
+          </tr>
+          {% endfor %}
+        </div>
+        <div class="form-group">
+          {{form.contact_method.label}}<br>
+          {% for subfield in form.contact_method %}
+          <tr>
+              <td>{{ subfield(required='required') }}</td>
+              <td>{{ subfield.label }}</td>
+          </tr>
+      {% endfor %}        
     </div>
+          <span>
+          <p>By clicking submit you agree to recive text messages and understand service provider rates may apply</p>
+          {{ form.hidden_tag() }}
+        </span>
+        <div>
+        {{form.submit()}}
+      </div>
+      </form>
+  </div>
+</div>
 {% endblock %}
 
 {% block scripts %}
 <script async defer
 src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAnqGvxGX0guwpSNA_SSk4DfIVJ9okqowg&callback=initMap">
 </script>
+<script async defer src="https://cdnjs.cloudflare.com/ajax/libs/libphonenumber-js/1.7.8/libphonenumber-js.min.js"></script>
 {% endblock %}

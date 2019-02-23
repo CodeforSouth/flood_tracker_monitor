@@ -1,8 +1,30 @@
+header{
+    border: 3px solid black;
+    background-color: lightcoral;
+    padding: 5px;
+    max-height: 40px;
+    font-size: 20px;
+}
+
+footer{
+    border: 3px solid black;
+    background-color: lightcoral;
+    padding: 10px;
+    margin-top: 30px;
+}
+body{
+    background-color: lightyellow;
+}
+
 .container{
- display: flex;
- flex-direction: column;
  justify-content: center;
  text-align: center;
+
+}
+
+.content{
+    margin: auto;
+    max-width: 800px;
 }
 
 .section{
@@ -10,7 +32,36 @@
 }
 
 #map {
-    width: 50%;
-    height: 400px;
+    margin-left: auto;
+    margin-right: auto;
     background-color: grey;
+    height: 350px;
+  }
+.form{
+    background-color: lightcoral;
+    padding: 20px;
+    margin: auto;
+    border: 3px solid;
+    text-align: left;
+    display: flex;
+}
+
+.form-title{
+    font-size: 20px;
+    font-weight: bold; 
+    color: darkblue;
+}
+  li {
+    list-style-type: none;
+  }
+
+  #submit{
+      background: white;
+  }
+
+  .column1{
+    flex:40%;
+    font-size: 20px;
+    margin-right: 10px;
+    border-right: 3px solid black;
   }

@@ -11,9 +11,6 @@ async function initMap() {
     const map = new google.maps.Map(document.getElementById('map'), {zoom: 10, center: miami});
     const response = await fetch('/api/devices').then( response => response.json());
     const markers = response.data.map(element => {
-        console.log(element)
                 return generateMarkers(element, map);            
   });
-  console.log(markers)
-
 }

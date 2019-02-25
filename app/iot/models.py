@@ -1,3 +1,5 @@
+from datetime import datetime
+from sqlalchemy.sql.functions import current_timestamp
 from iot import db
 import enum
 
@@ -7,10 +9,12 @@ class ContactMethod(enum.Enum):
     both = 3
 
 class Device(db.Model):
-    id = db.Column(db.Numeric, primary_key=True)
+    id = db.Column(db.Integer, primary_key=True)
     longatuide = db.Column(db.Float, primary_key=False)
     latitude = db.Column(db.Float, primary_key=False)
     name = db.Column(db.String(40), primary_key=False)
+    #TODO make core_id nullable=False
+    core_id = db.Column(db.Numeric, primary_key=False, unique=True)
 
     @property
     def serialize(self):
@@ -24,6 +28,7 @@ class Subscriber(db.Model):
     verified = db.Column(db.Boolean(), index=False, unique=False)
     opted_out = db.Column(db.Boolean(), index=False, unique=False)
     last_contacted = db.Column(db.TIMESTAMP(timezone=False), index=False, unique=False)
+    date_created = db.Column(db.TIMESTAMP(timezone=False), index=False, unique=False, default=current_timestamp())
     contact_method = db.Column(db.Enum(ContactMethod, name='contact_method'), index=False, nullable=False)
     
 

@@ -4,3 +4,8 @@ Flask-SQLAlchemy>=2.1
 flask-migrate
 flask-wtf
 twilio
+phonenumbers
+celery
+redis
+authy
+gunicorn

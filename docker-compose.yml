@@ -3,6 +3,8 @@ volumes:
   local_postgres_data: {}
   local_postgres_data_backups: {}
 services:
+  redis:
+    image: redis
   db:
     image: postgres
     volumes:
@@ -10,9 +12,19 @@ services:
       - local_postgres_data_backups:/backups    
     ports:
       - "5432:5432"
+  celery:
+    build: .
+    command: "celery -A iot.celery worker --loglevel=info"
+    volumes:
+      - ./app/:/app
+    env_file:
+      - ./env/web-var.env
+    depends_on:
+      - redis
+      - web
   web:
     build: .
-    command: flask run --host=0.0.0.0
+    command: gunicorn -w 4 -b 0.0.0.0:5000 iot:create_app()
     env_file:
       - ./env/web-var.env
     volumes:

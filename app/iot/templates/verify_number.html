@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block header %}
+  <span>{% block title %}Verification{% endblock %}</span>
+{% endblock %}
+
+{% block content %}
+<div class="container">
+  <div class="section form">
+      <p>You should recivie a SMS notification to {{phone_number}} to verify ownership of your number. Please insert the verification code you recive.
+        If you are unable too please email floodtracker@codeformiami.org
+      </p>
+      <form action="/verify" method="post">
+        <span class="form-title">Subscribe to Flood Alerts Near You</span>
+        <div class="form-group">
+          {{form.verification_code.label}}<br>
+          {{form.verification_code()}}
+          {{ form.hidden_tag() }}
+          {{form.submit()}}
+        </div> 
+      </div>
+</div>
+{% endblock %}

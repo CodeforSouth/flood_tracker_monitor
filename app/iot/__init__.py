@@ -1,12 +1,12 @@
 import os
-from celery import Celery
+# from celery import Celery
 from flask import Flask, render_template, request, session, abort
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 from .config import Config
 
 db = SQLAlchemy()
-celery = Celery(__name__, broker=Config.CELERY_BROKER_URL)
+# celery = Celery(__name__, broker=Config.CELERY_BROKER_URL)
 
 def create_app(test_config=None):
     # create and configure the app
@@ -21,7 +21,7 @@ def create_app(test_config=None):
     db.init_app(app)
     import iot.models
     migrate = Migrate(app, db)
-    celery.conf.update(app.config)
+    # celery.conf.update(app.config)
 
     # a simple page that says hello
     from iot.forms import SubscribeForm

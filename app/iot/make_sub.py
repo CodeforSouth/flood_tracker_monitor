@@ -10,7 +10,7 @@ from . import db
 from iot.models import Subscriber
 from iot.forms import SubscribeForm, VerifySubscribeForm
 from iot.services import twilio_service
-from iot.tasks import send_async_phone_verification
+# from iot.tasks import send_async_phone_verification
 bp = Blueprint('subscribe', __name__)
 @bp.route('/subscribe', methods=('GET', 'POST'))
 def create():
@@ -29,7 +29,7 @@ def create():
                 session['phone_number'] = user_phone_number.national_number
                 db.session.add(sub)
                 db.session.commit()
-                send_async_phone_verification(sub.phone_number, 'sms')
+                twilio_service.verify_phone_start(sub.phone_number, 'sms')
                 flash('Subscription processing for {}'.format(form.phone_number.data))
                 return render_template('verify_number.html', phone_number=sub.phone_number, form=VerifySubscribeForm())
             flash('Phone number already exists, please email floodtracking@codeformiami.org')

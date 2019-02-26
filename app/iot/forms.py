@@ -11,5 +11,5 @@ class SubscribeForm(FlaskForm):
     submit = SubmitField('Submit')
 
 class VerifySubscribeForm(FlaskForm):
-    verification_code = IntegerField('Verification Code')
+    verification_code = IntegerField('Verification Code', validators=[DataRequired()])
     submit = SubmitField('Submit')

@@ -30,12 +30,12 @@ def create():
                 db.session.add(sub)
                 db.session.commit()
                 twilio_service.verify_phone_start(sub.phone_number, 'sms')
-                flash('Subscription processing for {}'.format(form.phone_number.data))
-                return render_template('verify_number.html', phone_number=sub.phone_number, form=VerifySubscribeForm())
-            flash('Phone number already exists, please email floodtracking@codeformiami.org')
-            return redirect('/')
+                flash('Subscription processing for {}'.format(user_phone_number.national_number))
+                return redirect('/verify')
+            flash('Phone number exists or form is invalid, please try again or email floodtracking@codeformiami.org')
+            return
         flash('{} is not a valid US number'.format(form.phone_number.data[:10]))
-        return redirect('/')
+        return
     return redirect('/')
 
 @bp.route('/verify', methods=('GET', 'POST'))
@@ -55,11 +55,10 @@ def verify():
                     flash('Phone Number Verified'.format(phone_number))
                     return redirect('/')
                 else:
-                    for error_msg in verification.errors().values():
-                        flash('Error Message: '.format(error_msg))
-                    return redirect('/')
-            flash('Phone number does not exist, please email floodtracker@codeformiami.org')
-            return redirect('/')
+                    flash('Phone Number verification failed, please try again or email floodtracker@codeformiami.org'.format(phone_number))
+                    return redirect('/verify')
+            flash('Phone number does not exist, or form is invalid please email floodtracker@codeformiami.org')
+            return redirect('/verify')
         flash('Phone number not set, please email floodtracker@codeformiami.org')
         return redirect('/')
     return render_template('verify_number.html', phone_number=session.get("phone_number"), form=VerifySubscribeForm())

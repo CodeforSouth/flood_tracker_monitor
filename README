@@ -6,3 +6,8 @@ DATABASE_URL=postgres://db:5432
 SECRET_KEY=secret_key
 TWILIO_ACCOUNT_ID=secret_key
 TWILIO_SECRET_KEY=secret_key
+TWILIO_VERIFY_SECRET_KEY=secret_key
+SQLALCHEMY_DATABASE_URI=secret_key
+PARTICLE_SECRET_KEY=secret_key
+
+Alos required 

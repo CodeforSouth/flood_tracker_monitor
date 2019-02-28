@@ -13,6 +13,7 @@ def send_sms(subscriber_id):
     subscriber = db.session.query(Subscriber).filter(Subscriber.id==subscriber_id).one()
     client = generate_twilio_client()
     if subscriber and allowed_to_send(subscriber):
+        #TODO update last_contacted on success
         message = client.messages.create(
             to="+1{}".format(subscriber.phone_number), 
             from_="+17866717356",

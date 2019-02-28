@@ -1,8 +1,7 @@
 import datetime
 from flask import (
-    Blueprint, flash, g, redirect, render_template, request, url_for, session
+    Blueprint, flash, g, redirect, render_template, request, url_for, session, abort
 )
-from werkzeug.exceptions import abort
 from sqlalchemy.sql import exists
 import phonenumbers
 
@@ -33,9 +32,9 @@ def create():
                 flash('Subscription processing for {}'.format(user_phone_number.national_number))
                 return redirect('/verify')
             flash('Phone number exists or form is invalid, please try again or email floodtracking@codeformiami.org')
-            return
+            return redirect('/')
         flash('{} is not a valid US number'.format(form.phone_number.data[:10]))
-        return
+        return redirect('/')
     return redirect('/')
 
 @bp.route('/verify', methods=('GET', 'POST'))
@@ -48,10 +47,12 @@ def verify():
             if phone_exists is True and form.validate_on_submit():
                 sub = db.session.query(Subscriber).filter(Subscriber.phone_number == phone_number).one_or_none()
                 verification = twilio_service.verify_phone_check(phone_number, form.verification_code.data)
+                print(verification.ok())
                 if verification.ok():
                     sub.verified = True
                     db.session.add(sub)
                     db.session.commit()
+                    # TODO consider sending confirmation confirmed sms messsage.
                     flash('Phone Number Verified'.format(phone_number))
                     return redirect('/')
                 else:

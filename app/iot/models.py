@@ -34,3 +34,18 @@ class Subscriber(db.Model):
 
     def __repr__(self):
         return '<Phone Number {}>'.format(self.phone_number)  
+
+class DeviceReading(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    device = db.Column(db.ForeignKey('device.id'), index=False, unique=False, nullable=False)
+    core_id = db.Column(db.Numeric, primary_key=False, unique=False, nullable=False)
+    reading_cm = db.Column(db.Integer(), index=False, unique=False, nullable=False)
+    reading_reported = db.Column(db.DateTime(), index=False, unique=False, nullable=False)
+    date_created = db.Column(db.TIMESTAMP(), index=False, unique=False, default=current_timestamp())
+
+    def __repr__(self):
+        return '<Device core_id {} reading {}>'.format((self.core_id, self.reading_cm)) 
+    
+    @property
+    def serialize(self):
+        return {'id': int(self.id), 'device_id': self.device, 'core_id': self.core_id, 'reading_cm': self.reading_cm, 'reading_reported': self.reading_reported, 'date_created': self.date_created}

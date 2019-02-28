@@ -1,6 +1,6 @@
 import datetime
 from flask import (
-    Blueprint, flash, g, redirect, render_template, request, url_for, abort
+    Blueprint, flash, g, redirect, render_template, request, url_for, abort, jsonify
 )
 from sqlalchemy.sql import exists
 import phonenumbers
@@ -26,7 +26,7 @@ def notify():
                     subcribers_for_device = db.session.query(Subscriber).filter(Subscriber.device == device.id).all()
                     for subscriber in subcribers_for_device:
                         send_sms(subscriber.id)
-                    return json.dumps({'success':True}), 200, {'ContentType':'application/json'}
+                    return jsonify(success=True)
                 return abort(400)
             return abort(401)
         return redirect('/')

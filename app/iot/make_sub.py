@@ -52,6 +52,7 @@ def verify():
                     sub.verified = True
                     db.session.add(sub)
                     db.session.commit()
+                    # TODO consider sending confirmation confirmed sms messsage.
                     flash('Phone Number Verified'.format(phone_number))
                     return redirect('/')
                 else:

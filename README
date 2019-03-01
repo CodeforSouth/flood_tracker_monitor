@@ -25,7 +25,7 @@ To run this project:
 Clone the project
 run docker-compose build && docker-compose up
 within the container run flask db upgrade
-##NOT
+##NOTE
 There maybe some small database changes that are required after running migration, mostly in value lengths. This is undocumented but hopfully obvious as you go along (int4 to int8 type of stuff)
 import device list from SQL file included in repo
 navigate to localhost:8000/

@@ -1,5 +1,16 @@
+# Flood tracker App:
+heroku URL: http://secret-island-98010.herokuapp.com/
+slack Channel: '#iotresiliency'
+REQUIRES: Docker and Docker Compose
+
+this is flask/postgresql app that currently allows users to do the following:
+Subscribe to device alerts via sms
+recive post requests for /api/reading_request for particle readings - in development
+display list of devices at /api/devices
+display device readings by id at /api/devices/<int:device_id>
+
 ## before begining please create a folder with the name 'env' in the root directory of the repo
-## add a web-var.env file with values for the following:
+## add a web-var.env file with values within that folder for the following:
 FLASK_APP=iot
 FLASK_ENV=development
 DATABASE_URL=postgres://db:5432
@@ -10,4 +21,12 @@ TWILIO_VERIFY_SECRET_KEY=secret_key
 SQLALCHEMY_DATABASE_URI=secret_key
 PARTICLE_SECRET_KEY=secret_key
 
-Alos required 
+To run this project:
+Clone the project
+run docker-compose build && docker-compose up
+within the container run flask db upgrade
+##NOT
+There maybe some small database changes that are required after running migration, mostly in value lengths. This is undocumented but hopfully obvious as you go along (int4 to int8 type of stuff)
+import device list from SQL file included in repo
+navigate to localhost:8000/
+

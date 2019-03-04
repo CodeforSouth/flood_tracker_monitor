@@ -29,9 +29,16 @@ def device_view(device_id):
 def reading_request():
     # TODO
     if request.method == 'POST':
-        if request_is_from_particle(request):
-            hook_data = request.get_json()
-            device = db.session.query(Device).filter(Device.core_id == int(hook_data['coreid'])).one_or_none()
+        # TODO undo override once post data to db works
+        request_true_over = True
+        if request_true_over:
+        # if request_is_from_particle(request):
+            hook_data = request.form.to_dict()
+            print(request.form)
+            if hook_data['coreid'] is not None:
+                device = db.session.query(Device).filter(Device.core_id == hook_data['coreid']).one_or_none()
+            else:
+                device = None
             ## TODO consider auto-adding devices on valid_request
             if device is not None and hook_data['event'] == 'level_mm':
                 try:
@@ -44,6 +51,7 @@ def reading_request():
                 db.session.commit()
                 return jsonify(success=True)
             return abort(400)
+        print(request)
         return abort(401)
     return redirect('/')
 

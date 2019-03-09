@@ -29,12 +29,8 @@ def device_view(device_id):
 def reading_request():
     # TODO
     if request.method == 'POST':
-        # TODO undo override once post data to db works
-        request_true_over = True
-        if request_true_over:
-        # if request_is_from_particle(request):
+        if request_is_from_particle(request):
             hook_data = request.form.to_dict()
-            print(request.form)
             if hook_data['coreid'] is not None:
                 device = db.session.query(Device).filter(Device.core_id == hook_data['coreid']).one_or_none()
             else:
@@ -42,16 +38,15 @@ def reading_request():
             ## TODO consider auto-adding devices on valid_request
             if device is not None and hook_data['event'] == 'level_mm':
                 try:
-                    reading_cm = int(hook_data['data'])
+                    reading_mm = int(hook_data['data'])
                     reading_reported=iso8601.parse_date(hook_data['published_at'])
                 except KeyError:
                     return abort(400)
-                device_reading = DeviceReading(device=device.id, core_id=device.core_id, reading_cm=reading_cm, reading_reported=reading_reported)
+                device_reading = DeviceReading(device=device.id, core_id=device.core_id, reading_mm=reading_mm, reading_reported=reading_reported)
                 db.session.add(device_reading)
                 db.session.commit()
                 return jsonify(success=True)
             return abort(400)
-        print(request)
         return abort(401)
     return redirect('/')
 

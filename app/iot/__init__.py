@@ -23,14 +23,16 @@ def create_app(test_config=None):
     migrate = Migrate(app, db)
     # celery.conf.update(app.config)
 
-    # a simple page that says hello
     from iot.forms import SubscribeForm
     @app.route('/')
     def index():
         form = SubscribeForm()
         return render_template('index.html', form=form)
-    from . import make_sub, api_bp, notify
+    from . import make_sub, api_bp, notify, readings
+    # import blueprints here
     app.register_blueprint(make_sub.bp)
     app.register_blueprint(api_bp.bp)
     app.register_blueprint(notify.bp)
+    app.register_blueprint(readings.bp)
+
     return app

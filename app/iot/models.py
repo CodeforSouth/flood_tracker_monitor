@@ -44,7 +44,7 @@ class DeviceReading(db.Model):
     date_created = db.Column(db.TIMESTAMP(), index=False, unique=False, default=current_timestamp())
 
     def __repr__(self):
-        return '<Device core_id {} reading {}>'.format((self.core_id, self.reading_mm)) 
+        return '<Device {} core_id {}>'.format(self.reading_mm, self.core_id)
     
     @property
     def serialize(self):

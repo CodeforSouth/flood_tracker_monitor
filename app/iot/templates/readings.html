@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block header %}
+  <span>{% block title %} Device {{ device.id }} Reporting ({{device.name}}){% endblock %}</span>
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="section">
+      <div>
+        <span>Max Value {{max_reading.reading_mm}}</span>
+        <span>Reading Report {{max_reading.reading_reported}}</span>
+      </div>
+    </div>
+  <div class="section">
+    <span>Core ID {{ device.core_id }} </span>
+    <span>Long/Lat {{ device.longatuide }}/{{device.latitude}} </span>
+    <table>
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Reading in mm</th>
+            <th>Reading Reported Date</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for reading in readings %}
+          <tr>
+            <td>{{reading.id}}</td>
+            <td>{{reading.reading_mm}}</td>
+            <td>{{reading.reading_reported}}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+</table>
+  </div>
+</div>
+{% endblock %}

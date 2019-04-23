@@ -23,7 +23,7 @@ def upgrade():
     sa.Column('device', sa.Integer(), nullable=False),
     sa.Column('core_id', sa.Numeric(), nullable=False),
     sa.Column('reading_cm', sa.Integer(), nullable=False),
-    sa.Column('reading_reported', sa.DateTime(), nullable=False),
+    sa.Column('reading_reported', sa.TIMESTAMP(), nullable=False),
     sa.Column('date_created', sa.TIMESTAMP(), nullable=True),
     sa.ForeignKeyConstraint(['device'], ['device.id'], ),
     sa.PrimaryKeyConstraint('id')

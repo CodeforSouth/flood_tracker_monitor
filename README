@@ -13,7 +13,7 @@ display device readings by id at /api/devices/<int:device_id>
 ## add a web-var.env file with values within that folder for the following:
 FLASK_APP=iot
 FLASK_ENV=development
-DATABASE_URL=postgres://db:5432
+DATABASE_URL=postgresql://postgres@db/iot
 SECRET_KEY=secret_key
 TWILIO_ACCOUNT_ID=secret_key
 TWILIO_SECRET_KEY=secret_key
@@ -24,9 +24,8 @@ PARTICLE_SECRET_KEY=secret_key
 To run this project:
 Clone the project
 run docker-compose build && docker-compose up
-within the container run flask db upgrade
 ##NOTE
-There maybe some small database changes that are required after running migration, mostly in value lengths. This is undocumented but hopfully obvious as you go along (int4 to int8 type of stuff)
-import device list from SQL file(device_default_migration.sql) included in repo to devices table
+the dummy_data folder contains CSV's that you can import into the postgres container iot database
+device_export is for the device table, device_readings_export is for the device readings table.
 navigate to localhost:8000/
 

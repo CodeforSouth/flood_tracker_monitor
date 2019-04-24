@@ -1,17 +1,16 @@
 version: '3'
 volumes:
   local_postgres_data: {}
-  local_postgres_data_backups: {}
 services:
-  redis:
-    image: redis
-    ports:
-      - "6379:6379"
+  # redis:
+  #   image: redis
+  #   ports:
+  #     - "6379:6379"
   db:
     image: postgres
     volumes:
+      - ./createDB.sql:/docker-entrypoint-initdb.d/createDB.sql
       - local_postgres_data:/var/lib/postgresql/data
-      - local_postgres_data_backups:/backups    
     ports:
       - "5432:5432"
   # celery:
@@ -26,7 +25,8 @@ services:
   #     - web
   web:
     build: .
-    command: flask run --host=0.0.0.0
+    # command: flask run --host=0.0.0.0
+    entrypoint: /app/entrypoint.sh
     env_file:
       - ./env/web-var.env
     volumes:

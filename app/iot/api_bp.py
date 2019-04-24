@@ -24,7 +24,6 @@ def device_view(device_id):
             return jsonify(data=[reading.serialize for reading in readings])
     return jsonify(data=[])
 
-
 @bp.route('/api/reading_request', methods=('GET', 'POST'))
 def reading_request():
     # TODO
@@ -49,4 +48,3 @@ def reading_request():
             return abort(400)
         return abort(401)
     return redirect('/')
-

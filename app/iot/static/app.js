@@ -11,7 +11,7 @@ function generateMarkers(deviceObject, map){
 
 async function initMap() {
     const miami = {lat: 25.727345, lng: -80.233346};
-    const map = new google.maps.Map(document.getElementById('map'), {zoom: 10, center: miami});
+    const map = new google.maps.Map(document.getElementById('map'), {zoom: 11, center: miami});
     const response = await fetch('/api/devices').then( response => response.json());
     response.data.map(element => {
                 return generateMarkers(element, map);       

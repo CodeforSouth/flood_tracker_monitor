@@ -1,17 +1,23 @@
 <!doctype html>
-<title>{% block title %}{% endblock %} - Flood Tracker Subscription</title>
+<title>{% block title %}Flood Tracker{% endblock %}</title>
 <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-<!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"> -->
+<!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"> --> 
 <section class="content">
   <header>
-    {% block header %}{% endblock %}
+    <h1>Flood Tracker</h1>
+    <nav>
+      <a href="/">home</a>
+      <a href="#">about</a>
+      <a href="#">locations</a>
+      <a href="#">contact</a>
+    </nav>
   </header>
   {% for message in get_flashed_messages() %}
     <div class="flash">{{ message }}</div>
   {% endfor %}
   {% block content %}{% endblock %}
   <footer>
-    <a href="http://www.codeformiami.com">Code For Miami</a>
+    Brought to you by <a href="http://www.codeformiami.com">Code For Miami</a>
   </footer>
 </section>
 <script async defer

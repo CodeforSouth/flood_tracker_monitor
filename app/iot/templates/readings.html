@@ -7,10 +7,11 @@
 {% block content %}
 <div class="container">
     <div class="section">
-      <div>
+      <canvas id="myChart"></canvas>
+              <!-- <div>
         <span>Max Value {{max_reading.reading_mm}}</span>
         <span>Reading Report {{max_reading.reading_reported}}</span>
-      </div>
+      </div> -->
     </div>
   <div class="section">
     <span>Core ID {{ device.core_id }} </span>
@@ -35,4 +36,10 @@
 </table>
   </div>
 </div>
+{% endblock %}
+{% block scripts %}
+<script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0/dist/Chart.bundle.min.js" integrity="sha256-xKeoJ50pzbUGkpQxDYHD7o7hxe0LaOGeguUidbq6vis=" crossorigin="anonymous"></script>
+<script async defer
+src="{{ url_for('static', filename='readings.js') }}">
+</script>
 {% endblock %}

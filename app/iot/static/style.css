@@ -1,19 +1,36 @@
 header{
-    border: 3px solid black;
-    background-color: lightcoral;
+    background-image: linear-gradient(#00FFFF, white);
     padding: 5px;
-    max-height: 40px;
-    font-size: 20px;
+    font-size: 1.em;
+    color: red;
+    text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
+    text-transform: uppercase;
 }
 
-footer{
-    border: 3px solid black;
-    background-color: lightcoral;
+
+nav{
+    justify-content: center;
+    text-align: center;
+}
+nav > a{
+    text-decoration: none;
+    color: black;
+    margin: 10px;
+}
+
+footer {
     padding: 10px;
     margin-top: 30px;
 }
+
+footer > a {
+    text-decoration: none;
+    color: darkred;
+    font-weight: 400;
+}
+
 body{
-    background-color: lightyellow;
 }
 
 .container{
@@ -24,7 +41,7 @@ body{
 
 .content{
     margin: auto;
-    max-width: 800px;
+    max-width: 80%;
 }
 
 .section{
@@ -34,8 +51,7 @@ body{
 #map {
     margin-left: auto;
     margin-right: auto;
-    background-color: grey;
-    height: 350px;
+    height: 500px;
   }
 .form{
     background-color: lightcoral;
@@ -57,6 +73,9 @@ body{
 
   #submit{
       background: white;
+  }
+  .description{
+      font-size: 20px;
   }
 
   .column1{

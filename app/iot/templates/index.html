@@ -1,17 +1,12 @@
 {% extends 'base.html' %}
 
-{% block header %}
-  <span>{% block title %}Home{% endblock %}</span>
-{% endblock %}
-
 {% block content %}
 <div class="container">
     <div class="section">
-        <h2>Flood Trackers Currently Online</h2>
         <div id="map"></div>
     </div>
-  <div class="section form">
-      <span class="column1">The Code For Miami Flood Tracking project has monitoring devices listed below. You can elect to get notified by a phone call, sms message, or both when our trackers detect a flood.</span>
+    <span class="description">The Code For Miami Flood Tracking project has monitoring devices listed above. You can elect to get notified by a phone call, sms message, or both when our trackers detect a flood.</span>
+  <!-- <div class="section form">
     <form action="/subscribe" method="post" class="column2">
       <span class="form-title">Subscribe to Flood Alerts Near You</span>
       <div class="form-group">
@@ -44,7 +39,7 @@
         {{form.submit()}}
       </div>
       </form>
-  </div>
+  </div> -->
 </div>
 {% endblock %}
 

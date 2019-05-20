@@ -8,14 +8,14 @@
 <div class="container">
     <div class="section">
       <canvas id="myChart"></canvas>
-              <!-- <div>
-        <span>Max Value {{max_reading.reading_mm}}</span>
-        <span>Reading Report {{max_reading.reading_reported}}</span>
-      </div> -->
+      <button id='minutes'>Minutes</button>
+      <button id='hours'>Hours</button>
     </div>
   <div class="section">
-    <span>Core ID {{ device.core_id }} </span>
-    <span>Long/Lat {{ device.longatuide }}/{{device.latitude}} </span>
+    <span>Max Value: {{max_reading.reading_mm}}</span>
+    <span>Reading Report: {{max_reading.reading_reported}}</span>
+    <span>Core ID: {{ device.core_id }} </span>
+    <span>Long/Lat: {{ device.longatuide }}/{{device.latitude}} </span>
     <table>
         <thead>
           <tr>

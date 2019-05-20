@@ -12,7 +12,7 @@ bp = Blueprint('readings', __name__)
 def device_readings(device_id):
     device = db.session.query(Device).filter(Device.id == device_id).one_or_none()
     if device is not None:
-        readings = db.session.query(DeviceReading).filter(DeviceReading.device == device.id).order_by(DeviceReading.id.desc())[:100]
+        readings = db.session.query(DeviceReading).filter(DeviceReading.device == device.id).order_by(DeviceReading.id.desc())[:50]
         if readings is not None:
             all_readings = [reading.reading_mm for reading in readings]
             max_value = max(all_readings)

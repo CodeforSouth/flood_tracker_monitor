@@ -17,10 +17,13 @@ def create():
 
 @bp.route('/api/devices/<int:device_id>', methods=('GET', 'POST'))
 def device_view(device_id):
+    #TODO consider moving to streaming
+    #TODO paging support for easy additional dates.
     device = db.session.query(Device).filter(Device.id == device_id).one_or_none()
     if device is not None:
-        readings = db.session.query(DeviceReading).filter(DeviceReading.device == device.id).order_by(DeviceReading.id.desc())[:10000]
+        readings = db.session.query(DeviceReading).filter(DeviceReading.device == device.id).order_by(DeviceReading.id.desc())[:200]
         if readings is not None:
+            # TODO move to streaming functionality once data sets start really getting big;
             return jsonify(data=[reading.serialize for reading in readings])
     return jsonify(data=[])
 

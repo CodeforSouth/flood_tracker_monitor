@@ -1,13 +1,23 @@
-# Flood tracker App:
-heroku URL: http://secret-island-98010.herokuapp.com/  
-slack Channel: '#iotresiliency'  
-REQUIRES: Docker and Docker Compose  
+# Flood Tracker App
 
-this is flask/postgresql app that currently allows users to do the following:  
-Subscribe to device alerts via sms  
-recive post requests for /api/reading_request for particle readings - in development  
-display list of devices at /api/devices  
-display device readings by id at /api/devices/<int:device_id>  
+<img src='https://imgur.com/a/KlMi5BY' height='400px' />
+
+A big problem in Miami is flooding. Code for Miami started an IOT project to build flood trackers. In this project we look into notifying end-users about flooding using Python.
+
+See it running: http://secret-island-98010.herokuapp.com/  
+
+## Features
+
+* Subscribe to device to get alerts via SMS
+* Receive post requests for /api/reading_request for particle readings - in development
+* Display list of devices at /api/devices 
+* display device reading by ID at /api/devices/<int:device_id>
+
+## Requirements
+
+* Docker and Docker Compose  
+* Built on Python / Flask / Postres SQL
+
 
 ## To run this project:
 Clone the project  
@@ -29,4 +39,9 @@ navigate to localhost:8000
 ## NOTE
 the dummy_data folder contains CSV's that you can import into the postgres container iot database
 device_export is for the device table, device_readings_export is for the device readings table.
+
+## Get Involved
+
+* Join CFM Slack --> http://cfm-invite.herokuapp.com
+* Go to the slack channel --> '#iotresiliency'
 

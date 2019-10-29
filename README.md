@@ -1,6 +1,6 @@
 # Flood Tracker App
 
-<img src='https://imgur.com/a/KlMi5BY' height='400px' />
+<img src='https://i.imgur.com/iiBFOY0.png' height='400px' />
 
 A big problem in Miami is flooding. Code for Miami started an IOT project to build flood trackers. In this project we look into notifying end-users about flooding using Python.
 
